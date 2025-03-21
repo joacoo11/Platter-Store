@@ -1,0 +1,84 @@
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<div class="featured-products-section py-8 flex justify-center items-center overflow-x-hidden">
+    <div class="prod-container mx-auto w-full sm:w-[85%]">
+        <div class="featured-prod-title-container flex justify-between items-center mb-10">
+            <h2 class="featured-prod-title font-serif text-4xl text-[#231F20]" 
+                style="font-family: 'Source Serif 4', serif; font-weight: 900; font-size: 40px; line-height: 120%; letter-spacing: -1%;">
+                {{ section.settings.best-sellers-title }}
+            </h2>
+            <a href="/collections/{{ section.settings.collection }}" class="featured-top-div flex gap-2 items-center no-underline">
+            <span class="shop-all-label font-poppins text-sm text-center text-[#5C553A]" 
+                style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 14px; line-height: 140%; letter-spacing: 3%; text-align: center;">
+                {{ section.settings.label }}
+            </span>
+             <img src="https://cdn.shopify.com/s/files/1/0748/2939/8260/files/Icon.svg?v=1742531156" width="13" height="10" alt="">
+            </a>
+        </div>
+        <div class="products-grid flex flex-nowrap gap-5 overflow-x-scroll pb-9 w-screen pr-75" id="products-grid">
+            {% for product in collections[section.settings.collection].products %}
+                <a href="{{ product.url }}" class="product-card flex-1 rounded-lg p-4 cursor-pointer no-underline text-inherit">
+                    <div class="product-image-container relative">
+                        <div class="best-seller-label absolute bg-white text-black font-poppins font-semibold text-xs px-2.5 py-1 rounded-full border border-black z-10 ml-2 mt-1 font-bebas text-[10px] leading-[100%] tracking-[6%] text-center">Best Sellers</div> 
+                        <img src="{{ product.featured_image | img_url: 'large' }}" alt="{{ product.title }}" class="product-image max-w-[355px] min-h-[355px] object-cover rounded-lg cursor-pointer product-image-main">
+                        {% if product.images.size > 1 %}
+                            <img src="{{ product.images[1] | img_url: 'large' }}" alt="{{ product.title }}" class="product-image-hover absolute top-0 left-0 max-w-[355px] min-h-[355px] object-cover rounded-lg opacity-0 transition-opacity duration-300">
+                        {% endif %}
+                    </div>
+                    <div class="product-details flex flex-col gap-4 mt-6">
+                        <h3 class="prod-title font-bebas text-lg text-black m-0" style="font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-size: 18px; line-height: 100%; letter-spacing: 3%; text-transform: uppercase;">
+                            {{ product.title }}
+                          </h3> 
+                            <div class="prod-review-div flex items-center gap-1">
+                            <img src="https://cdn.shopify.com/s/files/1/0748/2939/8260/files/stars.svg?v=1742565163" width="68" height="12" alt="">
+                            <span class="text-gray-500 text-xs" style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 12px; line-height: 100%; letter-spacing: 0%; color: rgba(112, 112, 112, 1);">1234 Reviews</span>
+                            </div>
+                            <p class="product-price font-poppins font-medium text-base uppercase m-0 text-black" 
+                            style="font-size: 16px; line-height: 100%; letter-spacing: 0%;">
+                           {{ product.price | money }}
+                         </p>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+        <div class="show-more-container w-full sm:w-[90%] flex justify-center mt-7 mb-7">
+            <button id="toggle-more" class="block md:hidden mt-4 px-4 py-2 bg-blue-500 text-white rounded-full w-full min-h-[54px] text-center font-poppins font-normal text-base leading-[140%] tracking-[3%]">Show More</button>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+    {
+      "name": "Platter Section",
+      "tag": "section",
+      "class": "platter-section",
+      "settings": [
+        {
+          "type": "text",
+          "id": "best-sellers-title",
+          "label": "Best Sellers Title",
+          "default": "Best Sellers"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Shop All Best Sellers"
+        }
+      ],
+      "blocks": [
+        {
+          "type": "@app"
+        }
+      ],
+      "presets": [
+        {
+            "name": "Platter Section"
+        }
+      ]
+    }
+{% endschema %}

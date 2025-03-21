@@ -1,0 +1,91 @@
+
+    @media(max-width: 768px) {
+        .prod-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            max-width: 85%;
+            overflow-x: hidden;
+            margin: 0;
+            padding-right: 0px;
+        }
+
+        .product-details{
+            margin-top: 10px;
+        }
+
+        .product-card {
+            flex: 1 1 calc(50% - 20px); /* Adjust width to show 2 products per row with gap */
+        }
+
+        .product-image {
+            min-width: 158px;
+            max-width: 100%;
+            min-width: 158px;
+            min-height: 159px;
+            object-fit: cover;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .product-image-hover {
+            position: absolute;
+            top: 0;
+            left: 0;
+            max-width: 100%;
+            min-width: 158px;
+            min-height: 159px;
+            object-fit: cover;
+            border-radius: 10px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .featured-top-div {
+            display: none;
+        }
+
+        .featured-prod-title-container {
+            justify-content: center;
+        }
+
+        .featured-prod-title {
+            font-size: 28px;
+        }
+
+        .show-more-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            max-width: 90%;
+        }
+
+        #toggle-more {
+            font-family: 'Poppins';
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 140%;
+            letter-spacing: 3%;
+            width: 100%;
+            min-height: 54px;
+            color: white;
+            text-align: center;
+            background-color: black;
+            border-radius: 100px;
+        }
+
+        .prod-title {
+            font-size: 16px;
+        }
+
+        .prod-review-div span {
+            font-size: 11px;
+        }
+    }
